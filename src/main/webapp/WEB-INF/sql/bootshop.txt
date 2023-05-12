@@ -1,0 +1,9 @@
+create table bootshop(
+	num smallint auto_increment primary key,
+    sangpum varchar(30),
+    color varchar(20),
+    price int,
+    cnt smallint,
+    photo varchar(100),
+    ipgoday datetime default now()
+);

@@ -1,0 +1,13 @@
+create table reboard (
+	num smallint auto_increment primary key,
+    writer varchar(30),
+    filename varchar(100),
+    subject varchar(100),
+    content varchar(2000),
+    pass varchar(10),
+    readcount smallint default 0,
+    ref smallint,
+    step smallint,
+    depth smallint,
+    writeday datetime
+);

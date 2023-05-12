@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boot.study.mapper.ShopMapper">
+	<select id="getTotalCount" resultType="int">
+		select count(*) from bootshop
+	</select>
+	<insert id="insertShop" parameterType="ShopDto">
+		insert into bootshop (sangpum,color,price,cnt,photo) values (#{sangpum},#{color},
+		#{price},#{cnt},#{photo})
+	</insert>
+	<select id="getAllSangpums" resultType="ShopDto">
+		select * from bootshop order by num asc
+	</select>
+	<select id="getSangpum" parameterType="int" resultType="ShopDto">
+		select * from bootshop where num=#{num}
+	</select>
+	<update id="updatePhoto" parameterType="Map">
+		update bootshop set photo=#{photo} where num=#{num}
+	</update>
+	<update id="updateShop" parameterType="ShopDto">
+		update bootshop set sangpum=#{sangpum},price=#{price},color=#{color},cnt=#{cnt} where num=#{num}
+	</update>
+	<delete id="deleteShop" parameterType="int">
+		delete from bootshop where num=#{num}
+	</delete>
+</mapper>

@@ -1,0 +1,25 @@
+create table guest(
+	guest_idx smallint auto_increment primary key,
+    nickname varchar(20),
+    content varchar(1000),
+    writeday datetime
+);
+
+create table guest_photo(
+	photo_idx smallint auto_increment primary key,
+    guest_idx smallint,
+    photoname varchar(100),
+    foreign key(guest_idx) references guest(guest_idx) on delete cascade
+);
+
+GuestDto
+GuestPhotoDto
+
+GuestController
+
+GuestServiceInter
+GuestService
+
+GuestMapper
+
+GuestSql.xml

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boot.study.mapper.GuestMapper">
+	<insert id="insertGuest" parameterType="GuestDto">
+		insert into guest (nickname,content,writeday) values (#{nickname},#{content},now())
+		<!--  INSERT 후에 자동으로 들어간 guest_idx 값을 얻어서 dto 에 넣어준다 -->
+		<selectKey keyProperty="guest_idx" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<insert id="insertPhoto" parameterType="PhotoDto">
+		insert into guest_photo (guest_idx,photoname) values (#{guest_idx},#{photoname})
+	</insert>
+	<select id="getAllGuest" resultType="GuestDto">
+		select * from guest order by guest_idx desc
+	</select>
+	<select id="getPhotos" parameterType="int" resultType="PhotoDto">
+		select * from guest_photo where guest_idx=#{guest_idx} order by photo_idx asc
+	</select>
+	<delete id="deletePhoto" parameterType="int">
+		delete from guest_photo where photo_idx=#{photo_idx}
+	</delete>
+	<delete id="deleteAllPhoto" parameterType="int">
+		delete from guest_photo where guest_idx=#{guest_idx}
+	</delete>
+	<delete id="deleteGuest" parameterType="int">
+		delete from guest where guest_idx=#{guest_idx}
+	</delete>
+	<select id="getSelectPhoto" parameterType="int" resultType="String">
+		select photoname from guest_photo where photo_idx=#{photo_idx}
+	</select>
+	<select id="getAllPhoto" parameterType="int" resultType="String">
+		select photoname from guest_photo where guest_idx=#{guest_idx}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
